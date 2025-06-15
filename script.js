@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const taskInput = document.getElementById('task-input');
   const taskList = document.getElementById('task-list');
 
-  // Define addTask function with optional alert control
-  function addTask(showAlert = true) {
+  // Define addTask function
+  function addTask() {
     const taskText = taskInput.value.trim();
 
     if (taskText !== '') {
@@ -31,23 +31,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Clear input field
       taskInput.value = '';
-    } else if (showAlert) {
+    } else {
       alert('Please enter a task!');
     }
   }
 
-  // Attach event listener to addButton click
-  addButton.addEventListener('click', function () {
-    addTask(true); // show alert if empty on user click
-  });
+  // Add click event listener on addButton
+  addButton.addEventListener('click', addTask);
 
-  // Attach event listener to taskInput keypress for Enter key
+  // Add keypress event listener on taskInput for Enter key
   taskInput.addEventListener('keypress', function (event) {
     if (event.key === 'Enter') {
-      addTask(true); // show alert if empty on Enter key
+      addTask();
     }
   });
-
-  // Invoke addTask on DOMContentLoaded, but don't show alert if empty
-  addTask(false);
 });
