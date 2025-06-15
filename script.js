@@ -1,58 +1,50 @@
-// Setup Event Listener for Page Load
 document.addEventListener('DOMContentLoaded', function () {
   // Select DOM Elements
   const addButton = document.getElementById('add-task-btn');
   const taskInput = document.getElementById('task-input');
   const taskList = document.getElementById('task-list');
 
-  // Create the addTask Function
+  // Define the addTask function
   function addTask() {
-    // Retrieve and trim the value from the input field
     const taskText = taskInput.value.trim();
 
-    // If input is empty, alert the user
     if (taskText === '') {
       alert('Please enter a task!');
       return;
     }
 
-    // Task Creation and Removal
-    // Create a new <li> element
+    // Create li element and set its textContent
     const li = document.createElement('li');
+    li.textContent = taskText;
 
-    // Create a text node and append it to the <li>
-    const textNode = document.createTextNode(taskText);
-    li.appendChild(textNode);
-
-    // Create a remove button
+    // Create remove button
     const removeBtn = document.createElement('button');
     removeBtn.textContent = 'Remove';
     removeBtn.className = 'remove-btn';
 
-    // Assign an onclick event to the remove button
+    // Set onclick to remove li from taskList
     removeBtn.onclick = function () {
       taskList.removeChild(li);
     };
 
-    // Append the remove button to the <li>
+    // Append button to li
     li.appendChild(removeBtn);
 
-    // Append the <li> to the task list
+    // Append li to taskList
     taskList.appendChild(li);
 
-    // Clear the input field
+    // Clear input field
     taskInput.value = '';
   }
 
-  // Attach Event Listeners
-
-  // Add event listener to addButton that calls addTask on click
+  // Add event listener to button
   addButton.addEventListener('click', addTask);
 
-  // Add event listener to taskInput for Enter key press
+  // Add event listener for Enter key
   taskInput.addEventListener('keypress', function (event) {
     if (event.key === 'Enter') {
       addTask();
     }
   });
 });
+
